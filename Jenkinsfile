@@ -10,6 +10,6 @@ node() {
 //                inventory: "${WORKSPACE}/hosts",
 //                playbook: "${WORKSPACE}/httpRequest.yml",
 //                extras: '-vvv'
-        sh "ansible-playbook -i ./hosts httpRequest.yml"
+        sh "ansible-playbook -i ./hosts httpRequest.yml -vvv"
     }
 }
