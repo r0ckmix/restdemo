@@ -1,0 +1,14 @@
+- name: find port
+  block:
+    - name: test port
+      shell: "lsof -t -i TCP:{{ iPort }}"
+      register: lsof
+
+    - name: register port
+      set_fact:
+        freePort: "{{ iPort }}"
+        portFlag: 1
+      when: lsof.rc == 1
+  when: portFlag != 1
+  ignore_errors: yes
+  no_log: true
