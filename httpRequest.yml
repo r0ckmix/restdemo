@@ -32,6 +32,9 @@
         - name: http request
           uri:
             url: "http://localhost:{{ freePort }}/hello"
+        - name: Pause for 1 minute
+          pause:
+            minutes: 1
 #        - name: stop app
 #          shell: "kill -s TERM $(lsof -t -i TCP:{{ freePort }})"
       when: freePort is defined
