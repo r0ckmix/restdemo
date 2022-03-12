@@ -19,10 +19,8 @@
 
     - name: test app
       block:
-        - name: start app
-          shell: "java -jar {{ item }} --server.port={{ freePort }} >/dev/null 2>&1 &"
-          async: 3600
-          poll: 0
+        - name: Run Java app in the background
+          shell: nohup java -jar {{ item }} --server.port={{ freePort }} </dev/null >/dev/null 2>&1 &
           with_fileglob: "{{ inventory_dir }}/*.jar"
         - name: Wait for port
           wait_for:
@@ -32,9 +30,9 @@
         - name: http request
           uri:
             url: "http://localhost:{{ freePort }}/hello"
-        - name: Pause for 1 minute
-          pause:
-            minutes: 1
+#        - name: Pause for 1 minute
+#          pause:
+#            minutes: 1
 #        - name: stop app
 #          shell: "kill -s TERM $(lsof -t -i TCP:{{ freePort }})"
       when: freePort is defined
