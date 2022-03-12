@@ -19,5 +19,5 @@ java -jar jenkins-cli.jar -s http://localhost:8080 build pBuildRestDemo -s
 
 #docker stop jenkins
 
-rm jenkins-cli.jar
-rm -R $PWD/workspace
+#rm jenkins-cli.jar
+#rm -R $PWD/workspace

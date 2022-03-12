@@ -11,4 +11,4 @@
       when: lsof.rc == 1
   when: portFlag != 1
   ignore_errors: yes
-  no_log: true
+  no_log: false

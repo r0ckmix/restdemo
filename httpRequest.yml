@@ -6,12 +6,16 @@
       set_fact:
         portFlag: 0
 
-    - name: Get available port
+    - name: get available port
       include_tasks: registerPort.yml
       loop: "{{ range(8080, 8090) | list }}"
       loop_control:
         loop_var: iPort
-      no_log: true
+      no_log: false
+
+    - name: print app port
+      debug:
+        msg: "{{ freePort }}"
 
     - name: test app
       block:
@@ -28,6 +32,6 @@
         - name: http request
           uri:
             url: "http://localhost:{{ freePort }}/hello"
-        - name: stop app
-          shell: "kill -s TERM $(lsof -t -i TCP:{{ freePort }})"
+#        - name: stop app
+#          shell: "kill -s TERM $(lsof -t -i TCP:{{ freePort }})"
       when: freePort is defined
