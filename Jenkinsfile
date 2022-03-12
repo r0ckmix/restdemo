@@ -7,9 +7,8 @@ node() {
     }
     stage("Http request"){
         ansiblePlaybook colorized: true,
-                //disableHostKeyChecking: true,
-                //installation: 'ansible29py38',
                 inventory: "${WORKSPACE}/hosts",
-                playbook: "${WORKSPACE}/httpRequest.yml"
+                playbook: "${WORKSPACE}/httpRequest.yml",
+                extras: '-vvv'
     }
 }
