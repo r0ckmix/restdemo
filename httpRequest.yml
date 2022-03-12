@@ -20,7 +20,7 @@
     - name: test app
       block:
         - name: Run Java app in the background
-          shell: export BUILD_ID=dontKillMe && nohup java -jar {{ item }} --server.port={{ freePort }} </dev/null >/dev/null 2>&1 &
+          shell: export JENKINS_NODE_COOKIE=dontKillMe && export BUILD_ID=dontKillMe && nohup java -jar {{ item }} --server.port={{ freePort }} </dev/null >/dev/null 2>&1 &
           with_fileglob: "{{ inventory_dir }}/*.jar"
         - name: Wait for port
           wait_for:
