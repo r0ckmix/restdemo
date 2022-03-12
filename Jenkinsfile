@@ -6,10 +6,8 @@ node() {
         sh "gradle build test"
     }
     stage("Http request"){
-//        ansiblePlaybook colorized: true,
-//                inventory: "${WORKSPACE}/hosts",
-//                playbook: "${WORKSPACE}/httpRequest.yml",
-//                extras: '-vvv'
-        sh "ansible-playbook -i ./hosts httpRequest.yml -vvv"
+        ansiblePlaybook colorized: true,
+                inventory: "${WORKSPACE}/hosts",
+                playbook: "${WORKSPACE}/httpRequest.yml"
     }
 }

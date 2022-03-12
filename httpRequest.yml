@@ -19,18 +19,17 @@
 
     - name: test app
       block:
-        - shell: env
-#        - name: Run Java app in the background
-#          shell: export JENKINS_NODE_COOKIE=dontKillMe && export BUILD_ID=dontKillMe && nohup java -jar {{ item }} --server.port={{ freePort }} </dev/null >/dev/null 2>&1 &
-#          with_fileglob: "{{ inventory_dir }}/*.jar"
-#        - name: Wait for port
-#          wait_for:
-#            port: "{{ freePort }}"
-#            delay: 5
-#            timeout: 120
-#        - name: http request
-#          uri:
-#            url: "http://localhost:{{ freePort }}/hello"
+        - name: Run Java app in the background
+          shell: export JENKINS_NODE_COOKIE=dontKillMe && nohup java -jar {{ item }} --server.port={{ freePort }} </dev/null >/dev/null 2>&1 &
+          with_fileglob: "{{ inventory_dir }}/*.jar"
+        - name: Wait for port
+          wait_for:
+            port: "{{ freePort }}"
+            delay: 5
+            timeout: 120
+        - name: http request
+          uri:
+            url: "http://localhost:{{ freePort }}/hello"
 #        - name: Pause for 1 minute
 #          pause:
 #            minutes: 1
