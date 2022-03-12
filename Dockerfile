@@ -4,7 +4,8 @@ USER root
 
 RUN apt-get update && apt-get install python3-pip -y && \
     pip3 install ansible --upgrade &&\
-    apt-get upgrade -y && apt-get update
+    apt-get upgrade -y && apt-get update \
+RUN apt-get install -y lsof
 
 WORKDIR /gradle
 RUN curl -L https://services.gradle.org/distributions/gradle-7.4-bin.zip -o gradle-7.4-bin.zip
