@@ -17,7 +17,4 @@ USER jenkins
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
-COPY credentials.xml /var/jenkins_home/credentials.xml
-COPY hudson.util.Secret /var/jenkins_home/secrets/hudson.util.Secret
-COPY master.key /var/jenkins_home/secrets/master.key
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt

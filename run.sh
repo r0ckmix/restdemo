@@ -13,6 +13,8 @@ until $(curl --output /dev/null --silent --head --fail http://localhost:8080); d
 done
 
 curl -v http://localhost:8080/jnlpJars/jenkins-cli.jar -o jenkins-cli.jar
+
+java -jar jenkins-cli.jar -s http://localhost:8080 create-credentials-by-xml system::system::jenkins '(global)' < credential.xml
 java -jar jenkins-cli.jar -s http://localhost:8080 create-job pBuildRestDemo < pBuildRestDemo.xml
 sleep 2
 java -jar jenkins-cli.jar -s http://localhost:8080 build pBuildRestDemo -s
