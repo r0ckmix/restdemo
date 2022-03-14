@@ -14,12 +14,12 @@ done
 
 curl -v http://localhost:8080/jnlpJars/jenkins-cli.jar -o jenkins-cli.jar
 
-java -jar jenkins-cli.jar -s http://localhost:8080 create-credentials-by-xml system::system::jenkins '(global)' < credential.xml
+java -jar jenkins-cli.jar -s http://localhost:8080 create-credentials-by-xml system::system::jenkins _ < credential.xml
 java -jar jenkins-cli.jar -s http://localhost:8080 create-job pBuildRestDemo < pBuildRestDemo.xml
 sleep 2
 java -jar jenkins-cli.jar -s http://localhost:8080 build pBuildRestDemo -s
 
-#docker stop jenkins
+docker stop jenkins
 
-#rm jenkins-cli.jar
-#rm -R $PWD/workspace
+rm *.jar
+rm -R $PWD/workspace
