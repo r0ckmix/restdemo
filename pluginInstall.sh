@@ -1,0 +1,1 @@
+xargs jenkins-plugin-cli --plugins </usr/share/jenkins/ref/plugins.txt
