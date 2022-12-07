@@ -4,6 +4,7 @@ node() {
     }
     stage("Build"){
         sh "gradle build test"
+        sh "gradle jibBuildTar"
     }
     stage("Http request"){
         ansiblePlaybook colorized: true,
