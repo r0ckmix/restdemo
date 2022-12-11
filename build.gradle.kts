@@ -18,7 +18,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.spring") version "1.6.10"
     id("org.springframework.boot") version "2.6.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
-
+    id("com.google.cloud.tools.jib") version "3.3.1"
 }
 
 dependencies {
@@ -57,5 +57,14 @@ tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar
             from(archiveFile)
             into("./")
         }
+    }
+}
+
+jib {
+    from {
+        image = "openjdk:oraclelinux8"
+    }
+    to {
+        tags = setOf("latest")
     }
 }

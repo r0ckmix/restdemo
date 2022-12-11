@@ -1,0 +1,22 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: hello-minikube
+  namespace: default
+  labels:
+    app: hello-minikube
+spec:
+  ports:
+    - protocol: TCP
+      port: 8098
+      targetPort: 8088
+      nodePort: 30732
+  selector:
+    app: hello-minikube
+  type: NodePort
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  internalTrafficPolicy: Cluster
