@@ -39,7 +39,7 @@ fi
 
 MINKBSTATUS=$($MINKB status | grep host | awk '{ print $2 }')
 echo $MINKBSTATUS
-if [[ $MINKBSTATUS == "Stopped" ]]; then
+if [[ ! $MINKBSTATUS == "Running" ]]; then
   $MINKB start
 fi
 
@@ -54,4 +54,4 @@ echo ''
 $MINKB stop
 
 rm *.jar
-rm -R $PWD/workspace
+#rm -R $PWD/workspace
