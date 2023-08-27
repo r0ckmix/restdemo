@@ -1,6 +1,6 @@
 package org.openapitools.api
 
-import jdk.nashorn.internal.objects.NativeRegExp.test
+//import jdk.nashorn.internal.objects.NativeRegExp.test
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
