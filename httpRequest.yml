@@ -31,6 +31,7 @@
           uri:
             url: "http://localhost:{{ freePort }}/hello"
           register: app_response
+          return_content: yes
         - name: print response
           debug:
             msg: "{{ app_response }}"
