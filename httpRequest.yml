@@ -30,8 +30,8 @@
         - name: http request
           uri:
             url: "http://localhost:{{ freePort }}/hello"
+            return_content: yes
           register: app_response
-          return_content: yes
         - name: print response
           debug:
             msg: "{{ app_response }}"
