@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ lower (include "HiApp.fullname" .) }}
+  labels:
+    {{- include "HiApp.labels" . | nindent 4 }}
+data:
+  INSTANCE_NAME: {{ .Release.Name }}

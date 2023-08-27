@@ -1,5 +1,6 @@
 CWD=$(pwd)
 MINKB=$CWD/workspace/minikube
+HELM_PATH="/Applications/HELM/"
 
 if [[ "$(docker images -q jenkins:jcasc 2> /dev/null)" == "" ]]; then
   docker build -t jenkins:jcasc .
@@ -44,8 +45,13 @@ if [[ ! $MINKBSTATUS == "Running" ]]; then
 fi
 
 $MINKB image load restdemo:latest
-$MINKB kubectl -- apply -f hello-minikube.yml
-$MINKB kubectl -- apply -f hello-minikube-srv.yml
+
+$HELM_PATH/helm ls --all --short | xargs -L1 $HELM_PATH/helm delete
+$HELM_PATH/helm install ./demoapp --generate-name
+
+#$MINKB kubectl -- apply -f hello-minikube.yml
+#$MINKB kubectl -- apply -f hello-minikube-srv.yml
+
 sleep 5
 PODNAME=$($MINKB kubectl -- get pods --no-headers | awk '{ print $1 }')
 echo $PODNAME
