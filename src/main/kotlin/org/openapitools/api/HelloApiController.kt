@@ -22,6 +22,6 @@ class HelloApiController() {
     )
     fun helloGet(): ResponseEntity<kotlin.String> {
         val sInstanceName: String = env?.getProperty("INSTANCE_NAME") ?: ""
-        return ResponseEntity.ok("Hi!\nI am $sInstanceName!")
+        return ResponseEntity.ok("Hi!\nI amm $sInstanceName!")
     }
 }

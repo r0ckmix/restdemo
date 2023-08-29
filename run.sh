@@ -26,6 +26,7 @@ java -jar jenkins-cli.jar -s http://localhost:8080 build pBuildRestDemo -s
 docker cp jenkins:/var/jenkins_home/workspace/pBuildRestDemo/build/jib-image.tar $CWD/workspace/jib-image.tar
 docker stop jenkins
 
+docker images -a | grep "restdemo" | awk '{print $3}' | xargs docker rmi -f
 docker load --input $CWD/workspace/jib-image.tar
 
 if [ ! -f "$MINKB" ]; then
@@ -44,6 +45,7 @@ if [[ ! $MINKBSTATUS == "Running" ]]; then
   $MINKB start
 fi
 
+$MINKB image rm restdemo:latest
 $MINKB image load restdemo:latest
 
 $HELM_PATH/helm ls --all --short | xargs -L1 $HELM_PATH/helm delete
