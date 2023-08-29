@@ -45,7 +45,7 @@ if [[ ! $MINKBSTATUS == "Running" ]]; then
   $MINKB start
 fi
 
-$MINKB image rm restdemo:latest
+#$MINKB image rm restdemo:latest
 $MINKB image load restdemo:latest
 
 $HELM_PATH/helm ls --all --short | xargs -L1 $HELM_PATH/helm delete
@@ -59,7 +59,7 @@ PODNAME=$($MINKB kubectl -- get pods --no-headers | awk '{ print $1 }')
 echo $PODNAME
 $MINKB kubectl -- exec $PODNAME -- curl -s localhost:8088/hello
 echo ''
-$MINKB stop
+$MINKB delete
 
 rm *.jar
 #rm -R $PWD/workspace
