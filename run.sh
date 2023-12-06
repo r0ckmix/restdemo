@@ -16,8 +16,8 @@ until $(curl --output /dev/null --silent --head --fail http://localhost:8080); d
     sleep 3
 done
 
-curl -v http://localhost:8080/jnlpJars/jenkins-cli.jar -o jenkins-cli.jar
-
+curl -v 'http://localhost:8080/jnlpJars/jenkins-cli.jar' -o jenkins-cli.jar
+#add java installation
 java -jar jenkins-cli.jar -s http://localhost:8080 create-credentials-by-xml system::system::jenkins _ < credential.xml
 java -jar jenkins-cli.jar -s http://localhost:8080 create-job pBuildRestDemo < pBuildRestDemo.xml
 sleep 2
@@ -48,8 +48,13 @@ fi
 #$MINKB image rm restdemo:latest
 $MINKB image load restdemo:latest
 
-$HELM_PATH/helm ls --all --short | xargs -L1 $HELM_PATH/helm delete
-$HELM_PATH/helm install ./demoapp --generate-name
+#add helm installation
+
+#$HELM_PATH/helm ls --all --short | xargs -L1 $HELM_PATH/helm delete
+#$HELM_PATH/helm install ./demoapp --generate-name
+
+helm ls --all --short | xargs -L1 $HELM_PATH/helm delete
+helm install ./demoapp --generate-name
 
 #$MINKB kubectl -- apply -f hello-minikube.yml
 #$MINKB kubectl -- apply -f hello-minikube-srv.yml

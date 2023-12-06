@@ -2,8 +2,10 @@ FROM jenkins/jenkins:lts-jdk11
 
 USER root
 
-RUN apt-get update && apt-get install python3-pip -y && \
-    pip3 install ansible
+RUN apt-get update
+RUN apt-get install python3-pip -y
+RUN pip3 install ansible --break-system-packages
+RUN apt-get update
 RUN apt-get install lsof
 
 WORKDIR /gradle
